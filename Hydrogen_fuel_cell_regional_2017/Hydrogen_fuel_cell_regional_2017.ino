@@ -190,9 +190,8 @@ void loop()
         static unsigned long t00=0;
         static unsigned long time2=0;
         static unsigned long time1=0; //time it takes for the liquid to go from injected to dark
-        static unsigned long totalRuntime=0;
-        static unsigned long tRun1=0;//start of run time
-        static unsigned long tRun2=0;//end of run time
+        static unsigned long totalRuntime=0;//run time computed by the reaction
+        static unsigned long tRun1=0;//start of engine run time
         static int f1=0; // flag to indicate phase, phase 0 is the default where nothing has happened.
         ir = lum >> 16;
         full = lum & 0xFFFF;
@@ -203,7 +202,7 @@ void loop()
                 f1=1;//liquid has been injected.
                 t00=millis();
         }
-        if(f1==1 && a>40000)
+        else if(f1==1 && a>40000)
         {
                 if(count6==0)
                 {
@@ -215,12 +214,12 @@ void loop()
                 }
                 ++count6;
         }
-        if(f1==1 && a<40000)
+        else if(f1==1 && a<40000)
         {
                 t0=0;//reset variables if the stabilization was not continuous
                 count6=0;
         }
-        if(f1==2 && a<40000)
+        else if(f1==2 && a<40000)
         {
                 //liquid has turned dark
                 if(countd==0)
@@ -249,12 +248,10 @@ void loop()
 
         /**********Alternate motor code that used motor run time*************/
 
-        if(f2==0) {
-                int i=PololuWheelEncoders::getCountsAndResetM1();
-                total1=total1+abs(i/3591.84);
-        }
         if(total1==0 && tRun1==0 && totalRuntime==0)
         {
+                int i=PololuWheelEncoders::getCountsAndResetM1();
+                total1=total1+abs(i/3591.84);
                 md.setM1Speed(m1);
                 md.setM2Speed(m2);
                 Serial.println("It has not run");
