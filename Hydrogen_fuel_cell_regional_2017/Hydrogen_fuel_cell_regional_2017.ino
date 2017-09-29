@@ -272,7 +272,7 @@ void loop()
         }
         if (tRun1>0 && totalRuntime>0)
         {
-                if((millis()-tRun1)>totalRuntime)
+                if((millis()-tRun1)>=totalRuntime)
                 {
                         md.setM1Speed(0);
                         md.setM2Speed(0);
