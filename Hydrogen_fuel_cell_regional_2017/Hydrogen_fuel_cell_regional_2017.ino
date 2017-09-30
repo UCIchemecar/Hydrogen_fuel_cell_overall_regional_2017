@@ -185,7 +185,7 @@ void loop()
         static int m2=372;// adjust for speed of motor 2
         static int count6=0;//count the amount of times the sensor has detected 63534
         static int countd=0;//count the amount of times the solution has gone dark
-        uint32_t lum = tsl.getFullLuminosity();
+        uint32_t lum = tsl.getFullLuminosity();//get readings from the sensor with example from Adafruit's function
         uint16_t ir, full;
         static float distance=0;// distance the car will travel at the given speed in meters
         static float sp=0.54; // The speed of the car in m/s
@@ -197,7 +197,7 @@ void loop()
         static unsigned long totalRuntime=0;//run time computed by the reaction
         static unsigned long tRun1=0;//start of engine run time
         static int f1=0; // flag to indicate phase, phase 0 is the default where nothing has happened.
-        ir = lum >> 16;
+        ir = lum >> 16;//calculate readings from the sensor with example from Adafruit's function
         full = lum & 0xFFFF;
         unsigned int a=tsl.calculateLux(full, ir);
 
