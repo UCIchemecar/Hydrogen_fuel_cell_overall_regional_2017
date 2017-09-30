@@ -1,4 +1,7 @@
 /*Functions taken from Adafruit and Pololu's examples and were modified with reaction code for complete car control code*/
+/*pololu shield github: https://github.com/pololu/dual-mc33926-motor-shield*/ 
+/*Adafruit sensor github: https://github.com/adafruit/Adafruit_TSL2591_Library*/
+
 #include "DualMC33926MotorShield.h"
 #include <PololuWheelEncoders.h>
 #include <Wire.h>
@@ -6,7 +9,7 @@
 #include "Adafruit_TSL2591.h"
 DualMC33926MotorShield md;
 Adafruit_TSL2591 tsl = Adafruit_TSL2591(2591);
-void stopIfFault()
+void stopIfFault()//Pololu 's function to check for error in shield
 {
         if (md.getFault())
         {
@@ -14,7 +17,7 @@ void stopIfFault()
                 while(1) ;
         }
 }
-void displaySensorDetails(void)
+void displaySensorDetails(void)//Adafruit's function to show the make and model of the sensor
 {
         sensor_t sensor;
         tsl.getSensor(&sensor);
@@ -35,7 +38,7 @@ void displaySensorDetails(void)
     Configures the gain and integration time for the TSL2591
  */
 /**************************************************************************/
-void configureSensor(void)
+void configureSensor(void)//Adafruit's function to adjust the setting of the sensor
 {
         // You can change the gain on the fly, to adapt to brighter/dimmer light situations
         //tsl.setGain(TSL2591_GAIN_LOW);    // 1x gain (bright light)
@@ -111,7 +114,7 @@ void setup(void)
         md.init();
         PololuWheelEncoders::init(3,5,6,11);
 }
-void simpleRead(void)
+void simpleRead(void)//Adafruit's function to read basic light information
 {
         // Simple data read example. Just read the infrared, fullspecrtrum diode
         // or 'visible' (difference between the two) channels.
@@ -130,7 +133,7 @@ void simpleRead(void)
     Show how to read IR and Full Spectrum at once and convert to lux
  */
 /**************************************************************************/
-void advancedRead(void)
+void advancedRead(void)//Adafruit's function to read thorough light information
 {
         // More advanced data read example. Read 32 bits with top 16 bits IR, bottom 16 bits full spectrum
         // That way you can do whatever math and comparisons you want!
@@ -150,7 +153,7 @@ void advancedRead(void)
     Performs a read using the Adafruit Unified Sensor API.
  */
 /**************************************************************************/
-void unifiedSensorAPIRead(void)
+void unifiedSensorAPIRead(void)//Adafruit's general API for interacting with sensor
 {
         /* Get a new sensor event */
         sensors_event_t event;
