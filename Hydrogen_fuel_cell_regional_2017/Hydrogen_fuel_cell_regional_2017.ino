@@ -1,6 +1,6 @@
 /*Functions taken from Adafruit and Pololu's examples and were modified with reaction code for complete car control code*/
-/*pololu shield github: https://github.com/pololu/dual-mc33926-motor-shield*/ 
-/*Adafruit sensor github: https://github.com/adafruit/Adafruit_TSL2591_Library*/
+/*pololu shield github example: https://github.com/pololu/dual-mc33926-motor-shield/blob/master/examples/Demo/Demo.ino*/ 
+/*Adafruit sensor github example: https://github.com/adafruit/Adafruit_TSL2591_Library/tree/master/examples*/
 
 #include "DualMC33926MotorShield.h"
 #include <PololuWheelEncoders.h>
