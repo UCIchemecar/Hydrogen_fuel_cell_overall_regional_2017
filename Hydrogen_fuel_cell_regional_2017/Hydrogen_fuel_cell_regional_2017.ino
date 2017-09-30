@@ -1,4 +1,5 @@
-  #include "DualMC33926MotorShield.h"
+/*Functions taken from Adafruit and Pololu's examples and were modified with reaction code for complete car control code*/
+#include "DualMC33926MotorShield.h"
 #include <PololuWheelEncoders.h>
 #include <Wire.h>
 #include <Adafruit_Sensor.h>
